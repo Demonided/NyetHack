@@ -5,6 +5,7 @@ import twoStage.TownSquare
 
 fun main() {
     Game.play()
+    println("Hello People")
 }
 
 object Game{
