@@ -1,8 +1,12 @@
 package oneStage
 
+import com.bignerdranch.nyethack.Fightable
 import java.io.File
 
-class Player(_name:String, var healthPoints: Int = 100, val isBlessed: Boolean, private val isImmortal: Boolean) {
+class Player(_name:String,
+             var healthPoints: Int = 100,
+             val isBlessed: Boolean,
+             private val isImmortal: Boolean): Fightable {
     var name = _name
 //        get() = "${field.capitalize()} of $hometown"
         get() = field.capitalize()
@@ -54,4 +58,18 @@ class Player(_name:String, var healthPoints: Int = 100, val isBlessed: Boolean, 
             in 15..74 -> "looks pretty hurt."
             else -> "is in awful condition!"
         }
+
+    override var heatPoints: Int = healthPoints
+    override val diceCount: Int = 3
+    override val diceSides: Int = 6
+
+    override fun attack(opponent: Fightable): Int {
+        val damageDealt = if (isBlessed) {
+            damageRoll * 2
+        } else {
+            damageRoll
+        }
+        opponent.heatPoints -= damageDealt
+        return damageDealt
+    }
 }
