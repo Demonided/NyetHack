@@ -47,7 +47,7 @@ object Game{
     private class GameInput(arg: String?) {
         private val input = arg ?: ""
         val command = input.split(" ")[0]
-        val argument = input.split(" ").getOrElse(1, {""})
+        val argument = input.split(" ").getOrElse(1, { "" })
 
         fun processCommand() = when (command.toLowerCase()) {
             "move" -> move(argument)
@@ -88,8 +88,9 @@ object Game{
     }
 
     private fun fight() = currentRoom.monster?.let {
-        while (player.healthPoints > 0 && it.healtPoints > 0) {
+        while (player.healthPoints > 0 && it.healthPoints > 0) {
             slay(it)
+            if (currentRoom.monster == null) break
             Thread.sleep(1000)
         }
 
@@ -97,15 +98,15 @@ object Game{
     } ?: "There's nothing here to fight."
 
     private fun slay(monster: Monster) {
-        println("${monster.name} did ${monster.attack(player)} damage!")
-        println("${player.name} did ${player.attack(monster)} damage!")
+        println("${monster.name} did ${monster.attack(player)} damage! ${player.healthPoints}")
+        println("${player.name} did ${player.attack(monster)} damage! ${monster.healthPoints}")
 
         if (player.healthPoints <= 0) {
             println(">>>> You have been defeated! Thanks for playing. <<<<")
             exitProcess(0)
         }
 
-        if (monster.healtPoints <= 0) {
+        if (monster.healthPoints <= 0) {
             println(">>>> ${monster.name} has been defeated! <<<<")
             currentRoom.monster = null
         }

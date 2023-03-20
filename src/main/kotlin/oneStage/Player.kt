@@ -4,7 +4,7 @@ import com.bignerdranch.nyethack.Fightable
 import java.io.File
 
 class Player(_name:String,
-             var healthPoints: Int = 100,
+             override var healthPoints: Int = 100,
              val isBlessed: Boolean,
              private val isImmortal: Boolean): Fightable {
     var name = _name
@@ -59,7 +59,6 @@ class Player(_name:String,
             else -> "is in awful condition!"
         }
 
-    override var heatPoints: Int = healthPoints
     override val diceCount: Int = 3
     override val diceSides: Int = 6
 
@@ -69,7 +68,7 @@ class Player(_name:String,
         } else {
             damageRoll
         }
-        opponent.heatPoints -= damageDealt
+        opponent.healthPoints -= damageDealt
         return damageDealt
     }
 }
