@@ -6,6 +6,7 @@ import twoStage.TownSquare
 fun main() {
     Game.play()
     println("Hello People")
+    println("I'm Maks")
 }
 
 object Game{
