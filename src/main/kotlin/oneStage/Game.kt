@@ -98,8 +98,8 @@ object Game{
     } ?: "There's nothing here to fight."
 
     private fun slay(monster: Monster) {
-        println("${monster.name} did ${monster.attack(player)} damage! ${player.healthPoints}")
-        println("${player.name} did ${player.attack(monster)} damage! ${monster.healthPoints}")
+        println("${monster.name} did ${monster.attack(player)} damage! HP = ${player.healthPoints}")
+        println("${player.name} did ${player.attack(monster)} damage! HP = ${monster.healthPoints}")
 
         if (player.healthPoints <= 0) {
             println(">>>> You have been defeated! Thanks for playing. <<<<")

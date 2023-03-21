@@ -1,6 +1,7 @@
 package oneStage
 
 import com.bignerdranch.nyethack.Fightable
+import com.bignerdranch.nyethack.extensions.random
 import java.io.File
 
 class Player(_name:String,
@@ -20,8 +21,7 @@ class Player(_name:String,
     private fun selectHometown () = File("data/towns")
         .readText()
         .split("\n")
-        .shuffled()
-        .first()
+        .random()
 
     init {
         require(healthPoints > 0, { "healthPoints must be greater than zero." })
